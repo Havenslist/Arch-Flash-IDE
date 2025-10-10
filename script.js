@@ -1,8 +1,8 @@
 require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@latest/min/vs' } });
 
 require(['vs/editor/editor.main'], function () {
-  const editor = monaco.editor.create(document.getElementById('editor'), {
-    value: `<!DOCTYPE html>
+  const files = {
+    html: `<!DOCTYPE html>
 <html>
   <head>
     <style>
@@ -24,16 +24,34 @@ require(['vs/editor/editor.main'], function () {
     <div class="signature">Jordon</div>
   </body>
 </html>`,
+    css: `body {
+  background-color: #fdf6e3;
+  font-family: 'Courier New', monospace;
+}`,
+    js: `console.log("Welcome to Arc Flash IDE");`
+  };
+
+  let currentFile = 'html';
+
+  const editor = monaco.editor.create(document.getElementById('editor'), {
+    value: files[currentFile],
     language: 'html',
     theme: 'vs-dark'
   });
 
-  editor.onDidChangeModelContent(() => {
-    const code = editor.getValue();
-    const previewFrame = document.getElementById('preview');
-    previewFrame.srcdoc = code;
-  });
+  window.switchFile = function (file) {
+    currentFile = file;
+    editor.setValue(files[file]);
+    editor.updateOptions({ language: file === 'js' ? 'javascript' : file });
+    if (file === 'html') {
+      document.getElementById('preview').srcdoc = editor.getValue();
+    } else {
+      document.getElementById('preview').srcdoc = files['html'];
+    }
+  };
 
-  // Initial render
-  document.getElementById('preview').srcdoc = editor.getValue();
+  document.getElementById('preview').srcdoc = files['html'];
 });
+
+
+
