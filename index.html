@@ -14,9 +14,15 @@
 </header>
 
   <main>
-    <div id="editor"></div>
-    <iframe id="preview"></iframe>
-  </main>
+  <aside id="file-tabs">
+    <button onclick="switchFile('html')">index.html</button>
+    <button onclick="switchFile('css')">style.css</button>
+    <button onclick="switchFile('js')">script.js</button>
+  </aside>
+  <div id="editor"></div>
+  <iframe id="preview"></iframe>
+</main>
+
   <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
   <script src="script.js"></script>
 </body>
