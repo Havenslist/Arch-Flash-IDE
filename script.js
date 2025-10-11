@@ -120,6 +120,14 @@ function showFeedback(message) {
     box.style.opacity = 0;
   }, 2000);
 }
+window.newProject = function () {
+  files.html = "<!-- New HTML -->";
+  files.css = "/* New CSS */";
+  files.js = "// New JS";
+  switchFile(currentFile); // reload current file
+  history.replaceState(null, "", window.location.pathname); // remove ?project=ID
+  showFeedback("New project started!");
+};
 
 
 
