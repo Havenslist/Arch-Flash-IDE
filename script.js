@@ -82,6 +82,20 @@ window.saveProject = async function () {
     alert("Failed to save project.");
   }
 };
+window.saveProject = async function () {
+  try {
+    const docRef = await db.collection("projects").add({
+      html: files.html,
+      css: files.css,
+      js: files.js,
+      timestamp: new Date()
+    });
+    alert("Project saved! ID: " + docRef.id);
+  } catch (e) {
+    console.error("Error saving project: ", e);
+    alert("Failed to save project.");
+  }
+};
 
 
 
