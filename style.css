@@ -1,3 +1,18 @@
+#save-bar {
+  text-align: center;
+  padding: 1rem;
+  background: #fff0c2;
+  border-bottom: 2px solid #ccc;
+}
+
+#save-bar button {
+  padding: 0.5rem 1rem;
+  font-family: 'Courier New', monospace;
+  background: #fdf6e3;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
 #file-bar {
   display: flex;
   justify-content: center;
@@ -37,4 +52,5 @@
   height: 100%;
   border: none;
 }
+
 
