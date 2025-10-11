@@ -65,5 +65,22 @@
   transition: opacity 0.5s ease-in-out;
   z-index: 1000;
 }
+#arcflash-logo {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#arcflash-logo img {
+  width: 120px;
+  height: auto;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { filter: drop-shadow(0 0 5px #FFB300); }
+  to   { filter: drop-shadow(0 0 15px #FFB300); }
+}
+
 
 
