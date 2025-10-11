@@ -96,6 +96,22 @@ window.saveProject = async function () {
     alert("Failed to save project.");
   }
 };
+window.copyShareLink = function () {
+  const params = new URLSearchParams(window.location.search);
+  const projectId = params.get("project");
+
+  if (projectId) {
+    const shareURL = `${window.location.origin}?project=${projectId}`;
+    navigator.clipboard.writeText(shareURL).then(() => {
+      alert("Share link copied to clipboard!");
+    }).catch(err => {
+      console.error("Failed to copy link: ", err);
+      alert("Could not copy link.");
+    });
+  } else {
+    alert("No project ID found. Save your project first.");
+  }
+};
 
 
 
