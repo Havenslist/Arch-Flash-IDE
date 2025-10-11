@@ -21,7 +21,7 @@ require(['vs/editor/editor.main'], function () {
     </style>
   </head>
   <body>
-    <div class="signature">Jordon</div>
+    
   </body>
 </html>`,
     css: `body {
