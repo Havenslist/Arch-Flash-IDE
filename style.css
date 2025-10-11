@@ -52,5 +52,18 @@
   height: 100%;
   border: none;
 }
+#feedback {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #fff0c2;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  font-family: 'Courier New', monospace;
+  box-shadow: 0 0 10px #ffd700;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1000;
+}
 
 
