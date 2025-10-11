@@ -112,6 +112,14 @@ window.copyShareLink = function () {
     alert("No project ID found. Save your project first.");
   }
 };
+function showFeedback(message) {
+  const box = document.getElementById("feedback");
+  box.textContent = message;
+  box.style.opacity = 1;
+  setTimeout(() => {
+    box.style.opacity = 0;
+  }, 2000);
+}
 
 
 
