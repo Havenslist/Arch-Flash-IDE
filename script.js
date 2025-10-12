@@ -1,24 +1,37 @@
-// Live preview rendering
-const codeArea = document.getElementById('code-area');
+const htmlCode = document.getElementById('htmlCode');
+const cssCode = document.getElementById('cssCode');
+const jsCode = document.getElementById('jsCode');
 const livePreview = document.getElementById('live-preview');
-
-codeArea.addEventListener('input', () => {
-  const content = codeArea.value;
-  livePreview.srcdoc = content;
-});
-
-// Tab switching (HTML, CSS, JS)
 const tabs = document.querySelectorAll('.tab');
+const codeAreas = document.querySelectorAll('.code-area');
+
+// Tab switching
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    // Optional: switch content based on tab
-    // For now, HTML tab controls the preview
+
+    codeAreas.forEach(area => area.classList.remove('active'));
+    const selected = document.getElementById(`${tab.dataset.tab}Code`);
+    selected.classList.add('active');
+
+    updatePreview();
   });
 });
 
-// Ripple effect on buttons
+// Live preview rendering
+function updatePreview() {
+  const html = htmlCode.value;
+  const css = `<style>${cssCode.value}</style>`;
+  const js = `<script>${jsCode.value}<\/script>`;
+  livePreview.srcdoc = `${html}${css}${js}`;
+}
+
+[htmlCode, cssCode, jsCode].forEach(area => {
+  area.addEventListener('input', updatePreview);
+});
+
+// Ripple effect
 const buttons = document.querySelectorAll('.action');
 buttons.forEach(button => {
   button.addEventListener('click', (e) => {
@@ -29,12 +42,6 @@ buttons.forEach(button => {
     button.appendChild(ripple);
     setTimeout(() => ripple.remove(), 600);
   });
-});
-
-// Optional: onboarding modal trigger
-const logo = document.querySelector('#logo-container img');
-logo.addEventListener('click', () => {
-  alert('Welcome to Arc Flash. Start with a spark. Let your code catch fire.');
 });
 
 
