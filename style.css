@@ -15,9 +15,8 @@ body {
   margin-top: 40px;
 }
 
-#logo {
+#logo-container img {
   width: 100px;
-  height: 100px;
   animation: pulse 2s infinite;
   filter: drop-shadow(0 0 20px #ff9900);
 }
@@ -43,15 +42,18 @@ main {
   flex: 1;
   padding: 2rem;
   gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* Editor and preview */
 #editor, #preview {
-  flex: 1;
+  flex: 1 1 400px;
   background: #000;
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 0 20px #00cfff;
+  max-width: 600px;
 }
 
 /* Tabs */
@@ -59,6 +61,7 @@ main {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  justify-content: center;
 }
 
 .tab {
@@ -104,6 +107,7 @@ main {
 #preview h2 {
   color: #00cfff;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 #live-preview {
@@ -121,6 +125,7 @@ footer {
   justify-content: center;
   gap: 1rem;
   padding: 2rem;
+  flex-wrap: wrap;
 }
 
 button.action {
@@ -159,6 +164,7 @@ button.action:active::after {
   opacity: 1;
   transition: 0s;
 }
+
 
 
 
