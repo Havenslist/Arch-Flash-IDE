@@ -1,133 +1,41 @@
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// Live preview rendering
+const codeArea = document.getElementById('code-area');
+const livePreview = document.getElementById('live-preview');
 
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@latest/min/vs' } });
-
-require(['vs/editor/editor.main'], function () {
-  const files = {
-    html: `<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      body {
-        background-color: #f4f4f4;
-        text-align: center;
-        padding-top: 100px;
-        font-family: 'Courier New', monospace;
-      }
-      .signature {
-        font-size: 48px;
-        color: #4B0082;
-        font-style: italic;
-        text-shadow: 2px 2px #aaa;
-      }
-    </style>
-  </head>
-  <body>
-    
-  </body>
-</html>`,
-    css: `body {
-  background-color: #fdf6e3;
-  font-family: 'Courier New', monospace;
-}`,
-    js: `console.log("Welcome to Arc Flash IDE");`
-  };
-
-  let currentFile = 'html';
-
-  const editor = monaco.editor.create(document.getElementById('editor'), {
-    value: files[currentFile],
-    language: 'html',
-    theme: 'vs-dark'
-  });
-
-  window.switchFile = function (file) {
-    currentFile = file;
-    editor.setValue(files[file]);
-    editor.updateOptions({ language: file === 'js' ? 'javascript' : file });
-    if (file === 'html') {
-      document.getElementById('preview').srcdoc = editor.getValue();
-    } else {
-      document.getElementById('preview').srcdoc = files['html'];
-    }
-  };
-
-  document.getElementById('preview').srcdoc = files['html'];
+codeArea.addEventListener('input', () => {
+  const content = codeArea.value;
+  livePreview.srcdoc = content;
 });
-window.saveProject = async function () {
-  try {
-    const docRef = await db.collection("projects").add({
-      html: files.html,
-      css: files.css,
-      js: files.js,
-      timestamp: new Date()
-    });
-    alert("Project saved! ID: " + docRef.id);
-  } catch (e) {
-    console.error("Error saving project: ", e);
-    alert("Failed to save project.");
-  }
-};
-window.saveProject = async function () {
-  try {
-    const docRef = await db.collection("projects").add({
-      html: files.html,
-      css: files.css,
-      js: files.js,
-      timestamp: new Date()
-    });
-    alert("Project saved! ID: " + docRef.id);
-  } catch (e) {
-    console.error("Error saving project: ", e);
-    alert("Failed to save project.");
-  }
-};
-window.copyShareLink = function () {
-  const params = new URLSearchParams(window.location.search);
-  const projectId = params.get("project");
 
-  if (projectId) {
-    const shareURL = `${window.location.origin}?project=${projectId}`;
-    navigator.clipboard.writeText(shareURL).then(() => {
-      alert("Share link copied to clipboard!");
-    }).catch(err => {
-      console.error("Failed to copy link: ", err);
-      alert("Could not copy link.");
-    });
-  } else {
-    alert("No project ID found. Save your project first.");
-  }
-};
-function showFeedback(message) {
-  const box = document.getElementById("feedback");
-  box.textContent = message;
-  box.style.opacity = 1;
-  setTimeout(() => {
-    box.style.opacity = 0;
-  }, 2000);
-}
-window.newProject = function () {
-  files.html = "<!-- New HTML -->";
-  files.css = "/* New CSS */";
-  files.js = "// New JS";
-  switchFile(currentFile); // reload current file
-  history.replaceState(null, "", window.location.pathname); // remove ?project=ID
-  showFeedback("New project started!");
-};
+// Tab switching (HTML, CSS, JS)
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    // Optional: switch content based on tab
+    // For now, HTML tab controls the preview
+  });
+});
+
+// Ripple effect on buttons
+const buttons = document.querySelectorAll('.action');
+buttons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.left = `${e.offsetX}px`;
+    ripple.style.top = `${e.offsetY}px`;
+    button.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+
+// Optional: onboarding modal trigger
+const logo = document.querySelector('#logo-container img');
+logo.addEventListener('click', () => {
+  alert('Welcome to Arc Flash. Start with a spark. Let your code catch fire.');
+});
 
 
 
