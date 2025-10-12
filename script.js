@@ -5,7 +5,6 @@ const previewFrame = document.getElementById("live-preview");
 const tabs = document.querySelectorAll(".tab");
 const codeAreas = document.querySelectorAll(".code-area");
 
-// Update the preview pane with combined HTML, CSS, and JS
 function updatePreview() {
   const html = htmlCode.value;
   const css = `<style>${cssCode.value}</style>`;
@@ -18,7 +17,6 @@ function updatePreview() {
   preview.close();
 }
 
-// Tab switching logic
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
     tabs.forEach(t => t.classList.remove("active"));
@@ -29,13 +27,12 @@ tabs.forEach(tab => {
   });
 });
 
-// Live update on input
 htmlCode.addEventListener("input", updatePreview);
 cssCode.addEventListener("input", updatePreview);
 jsCode.addEventListener("input", updatePreview);
 
-// Initial render
 updatePreview();
+
 
 
 
