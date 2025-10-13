@@ -1,4 +1,3 @@
-/* Global layout */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -9,10 +8,10 @@ body {
   min-height: 100vh;
 }
 
-/* Logo and tagline */
+/* Header */
 #logo-container {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 #logo-container img {
@@ -24,39 +23,35 @@ body {
 #logo-container h1 {
   font-size: 2rem;
   font-weight: bold;
-  color: #ff9900;
+  background: linear-gradient(to right, #ff9900, #ff6600);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-shadow: 0 0 10px #ff9900, 0 0 20px #ff6600;
   margin-top: 10px;
 }
 
 /* Pulse animation */
 @keyframes pulse {
-  0% { transform: scale(1); filter: drop-shadow(0 0 20px #ff9900); }
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px #ff9900); }
   50% { transform: scale(1.05); filter: drop-shadow(0 0 40px #ff9900); }
-  100% { transform: scale(1); filter: drop-shadow(0 0 20px #ff9900); }
 }
 
-/* Main layout */
-main {
-  display: flex;
-  flex: 1;
-  padding: 2rem;
+/* Workspace layout */
+#workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  padding: 2rem;
 }
 
-/* Editor and preview */
-#editor, #preview {
-  flex: 1 1 400px;
+/* Editor pane */
+#editor-pane {
   background: #000;
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 0 20px #00cfff;
-  max-width: 600px;
 }
 
-/* Tabs */
 .tabs {
   display: flex;
   gap: 1rem;
@@ -85,7 +80,6 @@ main {
   box-shadow: 0 0 10px #00cfff;
 }
 
-/* Code areas */
 .code-area {
   width: 100%;
   height: 300px;
@@ -103,29 +97,11 @@ main {
   display: block;
 }
 
-/* Preview */
-#preview h2 {
-  color: #00cfff;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-#live-preview {
-  width: 100%;
-  height: 300px;
-  background: #222;
-  border: none;
-  border-radius: 6px;
-  box-shadow: inset 0 0 10px #000;
-}
-
 /* Footer buttons */
-footer {
+.footer-buttons {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 1rem;
 }
 
 button.action {
@@ -137,8 +113,6 @@ button.action {
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 0 10px #ff9900;
-  position: relative;
-  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
@@ -147,23 +121,55 @@ button.action:hover {
   box-shadow: 0 0 20px #ff9900;
 }
 
-button.action::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 10.01%);
-  background-size: 100% 100%;
-  opacity: 0;
-  transition: opacity 0.6s ease;
+/* Preview pane */
+#preview-pane {
+  background: #000;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 20px #ff9900;
 }
 
-button.action:active::after {
-  opacity: 1;
-  transition: 0s;
+#preview-pane h2 {
+  color: #00cfff;
+  text-align: center;
+  margin-bottom: 1rem;
 }
+
+#live-preview {
+  width: 100%;
+  height: 300px;
+  background: #222;
+  border: none;
+  border-radius: 6px;
+  box-shadow: inset 0 0 10px #000;
+}
+
+/* Chat box */
+#chat-box {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+#chat-box input {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: none;
+  background: #111;
+  color: #f5f5f5;
+}
+
+#chat-box button {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #00cfff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 
 
 
