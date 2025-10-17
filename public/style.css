@@ -279,6 +279,39 @@ button.action:hover {
   color: white;
   font-family: 'Courier New', Courier, monospace;
 }
+/* === Arc Flash Milestone Tracker === */
+
+.milestone-log {
+  position: fixed;
+  right: 20px;
+  top: 100px;
+  width: 250px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.milestone-log h3 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: #ffd700;
+  text-align: center;
+}
+
+.milestone-log div {
+  margin-bottom: 12px;
+  padding: 8px;
+  border-left: 3px solid #ffd700;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
 
 
 
