@@ -219,6 +219,67 @@ button.action:hover {
   font-family: 'Courier New', Courier, monospace;
 }
 /* === Arc Flash Glyph Logic === */
+/* === Arc Flash Glyph Logic === */
+
+.glyph-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.glyph-bar button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 1.1em;
+  color: white;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.glyph-bar button:hover {
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+.preview.ripple {
+  animation: rippleEffect 1s ease;
+}
+
+@keyframes rippleEffect {
+  0% { box-shadow: 0 0 0px rgba(255,255,255,0.2); }
+  50% { box-shadow: 0 0 20px rgba(255,255,255,0.6); }
+  100% { box-shadow: 0 0 0px rgba(255,255,255,0.2); }
+}
+
+#commitModal {
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
+
+.sunrise {
+  background: linear-gradient(to top, #ff512f, #dd2476);
+  transition: background 1.5s ease;
+}
+
+.milestone-log {
+  margin-top: 20px;
+  padding: 10px;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 
 
 
