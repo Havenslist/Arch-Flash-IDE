@@ -106,6 +106,23 @@ function logMilestone(type, message) {
   entry.innerHTML = `<strong>${type}</strong>: ${message} <em>(${new Date().toLocaleTimeString()})</em>`;
   log.appendChild(entry);
 }
+function logMilestone(type, message) {
+  const log = document.getElementById("milestoneLog");
+  const entry = document.createElement("div");
+
+  let glyph = "";
+  switch (type) {
+    case "First Light": glyph = "⚡️"; break;
+    case "Refinement": glyph = "🌀"; break;
+    case "Breakthrough": glyph = "🌅"; break;
+    case "Release": glyph = "🕊️"; break;
+    default: glyph = "✨";
+  }
+
+  entry.innerHTML = `<strong>${glyph} ${type}</strong><br>${message}<br><em>${new Date().toLocaleTimeString()}</em>`;
+  log.appendChild(entry);
+}
+
 
 
 
